@@ -19,5 +19,5 @@ app.get("/", async function (request, response) {
   }
 });
 
-const port = 5000 || 6331;
+const port = 6331 || 5000;
 app.listen(port, () => console.log(`Listening on Port: ${port}`));
