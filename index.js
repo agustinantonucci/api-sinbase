@@ -1,23 +1,30 @@
 const express = require("express");
-const { getAll } = require("./controllers/medicoController.js");
+// const bodyParser = require("body-parser"); /* deprecated */
+const cors = require("cors");
+
 const app = express();
-// import {PORT} from './config.js';
 
-app.use(express.json());
+var corsOptions = {
+  origin: "http://localhost:8081"
+};
 
-app.get("/", async function (request, response) {
-  try {
-    const [result] = await getAll();
+app.use(cors(corsOptions));
 
-    response.send({ success: true, result });
-  } catch (error) {
-    response.status(500).send({
-      success: false,
+// parse requests of content-type - application/json
+app.use(express.json()); /* bodyParser.json() is deprecated */
 
-      error: "Algo salió mal",
-    });
-  }
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true })); /* bodyParser.urlencoded() is deprecated */
+
+// simple route
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to bezkoder application." });
 });
 
-const port = 6331 || 5000;
-app.listen(port, () => console.log(`Listening on Port: ${port}`));
+require("./routes/tutorial.routes.js")(app);
+
+// set port, listen for requests
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
+});

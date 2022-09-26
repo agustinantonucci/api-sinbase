@@ -5,11 +5,8 @@ const getAll = async () => {
     const connection = await getConnection()
   
     return connection.execute(
-  
-      "select * from medico"
-  
+      "select * from medico;"
     )
-  
   }
 
 module.exports = {
