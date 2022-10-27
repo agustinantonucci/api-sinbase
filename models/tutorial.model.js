@@ -1,7 +1,7 @@
 const sql = require("./db.js");
 
 // constructor
-const Tutorial = function(tutorial) {
+const Tutorial = function (tutorial) {
   this.title = tutorial.title;
   this.description = tutorial.description;
   this.published = tutorial.published;
@@ -58,7 +58,7 @@ Tutorial.getAll = (title, result) => {
   });
 };
 
-Tutorial.getAllPublished = result => {
+Tutorial.getAllPublished = (result) => {
   sql.query("SELECT * FROM tutorials WHERE published=true", (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -113,7 +113,7 @@ Tutorial.remove = (id, result) => {
   });
 };
 
-Tutorial.removeAll = result => {
+Tutorial.removeAll = (result) => {
   sql.query("DELETE FROM tutorials", (err, res) => {
     if (err) {
       console.log("error: ", err);
