@@ -18,8 +18,6 @@ module.exports.enviarMensaje = async (mensaje, data) => {
       console.log("Error webhook", error);
     });
 
-  // console.log("token: ", token);
-
   if (token.status === 200) {
     const resp = await medicoWebhook
       .post(
